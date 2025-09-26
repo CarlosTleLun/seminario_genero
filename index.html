@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Seminario_Permanente_en_Perspectiva_de_Genero</title>
+  <link rel="shortcut icon" type="image/x-icon" href="img/webIconP5.jpeg" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Estilos de Swiper -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <script src="https://kit.fontawesome.com/6af37e65ca.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <div class="social-icons">
+      <a href="https://www.facebook.com/100087414681451" target="_blank" class="facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+      <a href="https://www.youtube.com/@direccionprepa5" target="_blank" class="youtube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Cargar Font Awesome -->
+
+
+  <header>
+    <nav class="nav">
+      <div class="nav-container">
+        <!-- Logo -->
+        <div class="logo">
+          <a href="https://www.enp5.unam.mx/" target="_blank"><img src="img/logos-unam-p5.png" alt="Logo"></a>
+        </div>
+
+        <!-- Menú -->
+        <ul class="nav-links">
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#documentacion">Documentación</a></li>
+          <li><a href="#inscripcion">Inscripción</a></li>
+          <li><a href="#memoria">Memorias</a></li>
+          <li><a href="#" id="btnCreditos">Créditos</a></li>
+        </ul>
+        <!-- Div de créditos -->
+        <div id="creditos" class="creditos-modal">
+          <div class="creditos-wrapper">
+            <div class="creditos-content">
+              <h2>Créditos</h2>
+
+              <div class="credito-item">
+                <h3>COMITÉ ORGANIZADOR</h3>
+                <p>Mtra. Eugenia Segovia Mora<br>
+                  Mtra. Gabriela Peña de la Cruz<br>
+                  Mtra. Karla Arlen Ortíz Soto<br>
+                  Mtro. Jaime Cortés Vite<br>
+                  Mtro. Antonio Figueroa Gutiérrez<br>
+                  Mtro. Alan Javier Pérez Vázquez<br>
+                  Mtro. David Ignacio Velázquez Rendón
+                </p>
+              </div>
+
+              <div class="credito-item">
+                <h3>TÉCNICOS DEL EVENTO</h3>
+                <p>Mtra. Eugenia Segovia Mora<br>
+                  T. A. Carlos Tlecuitl Luna
+                </p>
+              </div>
+
+              <div class="credito-item">
+                <h3>DISEÑO</h3>
+                <p>Mtro. Antonio Figueroa Gutiérrez<br>
+                  Mtro. Alan Javier Pérez Vázquez
+                </p>
+              </div>
+
+              <div class="credito-item">
+                <h3>DESARROLLO WEB</h3>
+                <p>T.A. Carlos Tlecuitl Luna</p>
+              </div>
+
+              <div class="credito-item">
+                <h3>ADMINISTRACIÓN Y MANTENIMIENTO<br>DEL SERVIDOR WEB</h3>
+                <p>Mtro. Marco Antonio Martínez Quintana</p>
+              </div>
+
+              <button id="cerrarCreditos" class="btn-cerrar">Cerrar</button>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- Hamburger -->
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Imagen de fondo con texto -->
+    <div class="header-bg">
+      <div class="header-content">
+        <h1>Seminario Permanente sobre Perspectiva de Género</h1>
+        <p>Escuela Nacional Preparatoria Plantel 5 "José Vasconselos"</p>
+      </div>
+    </div>
+  </header>
+
+
+  <script src="js/menu.js" defer></script>
+  <main>
+    <div class="avisos-container">
+      <h2 class="sub-titulos scroll-text">📢 Avisos</h2>
+
+      <div class="avisos-carrusel">
+        <div class="avisos-wrapper">
+          <div class="avisos-slide">
+            <a href="sem1.html" target="_blank">
+              <img src="img/carrusel/1seminario.jpg" alt="Aviso 1">
+            </a>
+          </div>
+          <div class="avisos-slide">
+            <a href="seminarios/sem2.html" target="_blank">
+              <img src="img/carrusel/2seminario.jpg" alt="Aviso 2">
+            </a>
+          </div>
+          <!--
+          <div class="avisos-slide">
+            <a href="https://www.youtube.com/watch?v=vE-RZ6NwkcM" target="_blank">
+              <img src="img/3.jpg" alt="Aviso 3">
+            </a>
+          </div>
+          <div class="avisos-slide">
+            <a href="https://www.youtube.com/watch?v=4vTFdQ1udng" target="_blank">
+              <img src="img/4.jpg" alt="Aviso 4">
+            </a>
+          </div>
+          <div class="avisos-slide">
+            <a href="https://www.youtube.com/watch?v=UTbAHjxP9Zk" target="_blank">
+              <img src="img/5.jpg" alt="Aviso 5">
+            </a>
+          </div>
+          <div class="avisos-slide">
+            <a href="https://www.youtube.com/watch?v=-w5LNOh-WzE" target="_blank">
+              <img src="img/6.jpg" alt="Aviso 6">
+            </a>
+          </div>
+          <div class="avisos-slide">
+            <a href="https://www.youtube.com/watch?v=bCzXzoUcgnk" target="_blank">
+              <img src="img/7.jpg" alt="Aviso 7">
+            </a>
+          </div>-->
+        </div>
+
+        <!-- Controles -->
+        <button class="avisos-prev">❮</button>
+        <button class="avisos-next">❯</button>
+      </div>
+    </div>
+
+
+    <div id="cierre">
+
+      <div>
+        <p class="scroll-text">"Bienvenidos al Seminario Permanente en Perspectiva de Género de la Universidad Nacional
+          Autónoma de México y la Escuela Nacional Preparatoria Plantel 5."<br><br>
+          Este espacio está diseñado para fomentar el diálogo, la reflexión y el aprendizaje sobre temas fundamentales
+          de equidad de género. A través de conferencias y talleres buscamos
+          impulsar un cambio positivo en nuestra sociedad promoviendo la igualdad de oportunidades y el respeto por la
+          diversidad.</p>
+      </div>
+
+    </div>
+
+
+    </div>
+
+
+    <div class="tarjetas">
+      <div id="documentacion">
+        <section class="docs contenedor" id="sias">
+          <div id="datos-docs">
+            <div class="titulo-container">
+              <h3>Documentación</h3>
+            </div>
+
+            <div class="cards-container">
+              <div class="card">
+                <a href="convocatoria.html" class="card-link">
+                  <div class="card-image">
+                    <img src="img/documentacion.jpg" alt="Documentación">
+                  </div>
+                  <div class="card-text">
+                    <h4>Documentación</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div id="inscripcion">
+        <section class="docs contenedor" id="sias">
+          <div id="datos-docs">
+            <div class="titulo-container">
+              <h3>Inscripción</h3>
+            </div>
+
+            <div class="cards-container">
+              <div class="card">
+                <a href="inscripciones/inscripcion_seminario.html" class="card-link">
+                  <div class="card-image">
+                    <img src="img/asistencia-s.jpg" alt="Seminario">
+                  </div>
+                  <div class="card-text">
+                    <h4>Inscripción</h4>
+                    <p>Seminario</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="card">
+                <a href="inscripciones/inscripcion_conversatorio.html" target="_blank" class="card-link">
+                  <div class="card-image">
+                    <img src="img/asistencia-c.jpg" alt="Conversatorio">
+                  </div>
+                  <div class="card-text">
+                    <h4>Inscripción</h4>
+                    <p>Conversatorio</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="memoria">
+        <section class="docs contenedor" id="sias">
+          <div id="datos-docs">
+            <div class="titulo-container">
+              <h3>Seminario - Memorias</h3>
+            </div>
+
+            <div class="cards-container">
+              <div class="card">
+                <a href="seminarios/sem1.html" class="card-link">
+                  <div class="card-image">
+                    <img src="img/1seminario.jpg" alt="1° Seminario">
+                  </div>
+                  <div class="card-text">
+                    <h4>1<sup>er</sup> Seminario - 2023</h4>
+                    <p>Seminario permanente sobre Perspectiva de Género</p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="card">
+                <a href="seminarios/sem2.html" class="card-link">
+                  <div class="card-image">
+                    <img src="img/2seminario.jpg" alt="2° Seminario">
+                  </div>
+                  <div class="card-text">
+                    <h4>2<sup>do</sup> Seminario - 2024</h4>
+                    <p>La perspectiva de género. Un reto del siglo XXI: reflexiones y horizontes en el ámbito educativo
+                    </p>
+                  </div>
+                </a>
+              </div>
+
+              <div class="card">
+                <a href="sem3.html" class="card-link">
+                  <div class="card-image">
+                    <img src="img/3seminario.jpg" alt="3° Seminario">
+                  </div>
+                  <div class="card-text">
+                    <h4>3<sup>er</sup> Seminario - 2025</h4>
+                    <p>Género en sociedad y educación: entre resistencias y transformaciones</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+        </section>
+      </div>
+
+      <section class="docs contenedor" id="sias">
+        <div id="datos-docs">
+          <div class="titulo-container">
+            <h3>Conversatorio - Memorias</h3>
+          </div>
+          <div class="cards-container">
+            <div class="card">
+              <a href="conversatorios/conversatorio1.html" class="card-link">
+                <div class="card-image">
+                  <img src="img/1conversatorio.jpg" alt="1° Conversatorio">
+                </div>
+                <div class="card-text">
+                  <h4>1<sup>er</sup> Conversatorio - 2023</h4>
+                </div>
+              </a>
+            </div>
+
+            <div class="card">
+              <a href="conversatorios/conversatorio2.html" class="card-link">
+                <div class="card-image">
+                  <img src="img/2conversatorio.jpg" alt="2° Conversatorio">
+                </div>
+                <div class="card-text">
+                  <h4>2<sup>do</sup> Conversatorio - 2024</h4>
+                </div>
+              </a>
+            </div>
+
+            <div class="card">
+              <a href="conversatorio1.html" class="card-link">
+                <div class="card-image">
+                  <img src="img/3conversatorio.jpg" alt="1° Conversatorio">
+                </div>
+                <div class="card-text">
+                  <h4>3<sup>er</sup> Conversatorio - 2025</h4>
+                </div>
+              </a>
+            </div>
+          </div>
+      </section>
+    </div>
+    </div>
+    </div>
+
+  </main>
+
+
+  </br>
+  <div id="otra-section">
+
+    <p class=" scroll-text">
+      "Creemos en el poder de la educación y el diálogo para transformar a la sociedad. A través de este
+      seminario nos
+      esforzamos por generar un impacto positivo en la comunidad,
+      promoviendo la equidad de género y el respeto por los derechos humanos. Tu participación es clave para
+      hacer de
+      este un espacio significativo para todos. Agradecemos
+      profundamente a la comunidad académica por su interés y compromiso en ser parte de este importante
+      esfuerzo."
+    </p>
+  </div>
+  </br>
+
+
+
+  </p>
+  </div>
+  </div>
+
+
+
+  <footer class="p5-footer" role="contentinfo">
+    <div class="p5-footer-inner">
+      <!-- Logo y descripción -->
+      <div class="p5-col p5-brand">
+        <img src="img/prepa5.png" alt="Logo Prepa 5 UNAM" class="p5-logo">
+        <p class="p5-desc">
+          Preparatoria No. 5 “José Vasconcelos” · Universidad Nacional Autónoma de México
+          <br><strong>Seminario Permanente en Perspectiva de Género</strong>.
+        </p>
+        <div class="p5-social">
+          <a href="https://www.facebook.com/profile.php?id=100087414681451&rdid=JrkufSMIhnIsdWZJ#" target="_blank"
+            aria-label="Facebook Prepa 5" class="p5-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.youtube.com/@direccionprepa5" target="_blank" aria-label="YouTube Prepa 5"
+            class="p5-icon">
+            <i class="fab fa-youtube"></i>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Enlaces rápidos -->
+      <nav class="p5-col p5-links" aria-label="Enlaces rápidos">
+        <h3>Enlaces</h3>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#documentacion">Documentación</a></li>
+          <li><a href="#inscripcion">Inscripción</a></li>
+          <li><a href="#memoria">Memorias</a></li>
+          <li><a href="#" id="btnCreditosFooter">Créditos</a></li>
+        </ul>
+      </nav>
+
+      <!-- Contacto / Dirección -->
+      <div class="p5-col p5-contact">
+        <h3>Contacto</h3>
+        <address>
+          Calz. del Hueso 729, Ex Hacienda de Coapa<br>
+          Coyoacán, CP 04960, Ciudad de México
+        </address>
+        <p class="p5-contact-item">
+
+        </p>
+
+        <p class="p5-contact-item">
+          <a href="mailto:direccion.p5@enp.unam.mx" target="_blank">
+            <span class="emoji-mail">📧</span>
+            <b>direccion.p5@enp.unam.mx</b>
+          </a>
+        </p>
+
+
+      </div>
+
+      <!-- Boletín -->
+      <div class="p5-col p5-news">
+        <h3>Enlaces de interés</h3>
+        <ul class="p5-interest">
+          <li><a href="https://www.enp5.unam.mx/" target="_blank">Sitio oficial Prepa 5</a></li>
+          <li><a href="http://enp.unam.mx/dgenp/" target="_blank">Dirección General de la ENP</a></li>
+          <li><a href="https://www.unam.mx/" target="_blank">Universidad Nacional Autónoma de México</a></li>
+          <li><a href="#" target="_blank">Seminario sobre Salud Integral para el Profesorado.</a></li>
+          <li><a href="#" target="_blank">Seminario Sobre Discapacidades en la Educación Media Superior</a></li>
+          <li><a href="https://dgenp.mx/TE_ENP5/seminario/" target="_blank">Seminario Acercamiento a las tecnologías emergentes</a></li>
+        </ul>
+        <br>
+        <a href="http://enp.unam.mx/assets/pdf/cartillaLGBTIQ.pdf" target="_blank"><img class="cartilla"
+            src="img/cartilla.png" alt="Cartilla"></a>
+      </div>
+    </div>
+
+
+
+    <!-- Pie final -->
+    <div class="p5-bottom">
+      <p>© <span id="p5-year"></span> Hecho en México, todos los derechos reservados
+        <br />
+        Esta página puede ser reproducida con fines no lucrativos,
+        <br />
+        siempre y cuando no se mutile, se cite la fuente completa y su
+        dirección electrónica.
+        <br />
+        De otra forma requiere permiso previo por escrito de la institución.
+        <br />
+        <br />
+        Sitio web administrado por:
+        <br />
+        La Escuela Nacional Preparatoria plantel 5.
+        <br />
+      <ul class="p5-bottom-links">
+        <li><a href="https://www.enp5.unam.mx/storage/2024/08/AVISO-DE-PRIVACIDAD-INTEGRAL-enp-5.pdf"
+            target="_blank">Aviso de privacidad Integral</a></li>
+      </ul>
+    </div>
+  </footer>
+  <!-- ---------- FIN FOOTER ---------- -->
+  <!-- Login oculto -->
+  <div id="login-oculto" class="login-oculto">
+    <div class="login-content">
+      <img class="login-img" src="img/prepa5.png" alt="">
+      <h2>Acceso Administrador</h2>
+      <form id="formLogin">
+        <label for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+        <button type="submit">Ingresar</button>
+        <button type="button" id="cerrarLogin">Cerrar</button>
+        <p id="login-msg" style="color:red;"></p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Usuario y contraseña de prueba
+    const USUARIO = "admin";
+    const CONTRASENA = "m3d14";
+
+    const formLogin = document.getElementById("formLogin");
+    const loginMsg = document.getElementById("login-msg");
+    const cerrarLogin = document.getElementById("cerrarLogin");
+    const loginOculto = document.getElementById("login-oculto");
+
+    formLogin.addEventListener("submit", function (e) {
+      e.preventDefault(); // Evita el envío real del formulario
+
+      const usuarioIngresado = document.getElementById("usuario").value;
+      const contrasenaIngresada = document.getElementById("contrasena").value;
+
+      if (usuarioIngresado === USUARIO && contrasenaIngresada === CONTRASENA) {
+        // Redirige a la carpeta admin
+        window.location.href = "admin/index.html";
+      } else {
+        loginMsg.textContent = "Usuario o contraseña incorrectos";
+      }
+    });
+
+    cerrarLogin.addEventListener("click", function () {
+      loginOculto.style.display = "none"; // Cierra el modal
+    });
+  </script>
+
+
+  <script>
+    // Año automático
+    document.getElementById('p5-year').textContent = new Date().getFullYear();
+
+    // Suscripción boletín
+    function subscribeNewsletter() {
+      const email = document.getElementById('p5-email').value.trim();
+      const msg = document.getElementById('p5-news-msg');
+      if (!email) { msg.textContent = 'Introduce un correo válido.'; return; }
+      msg.textContent = '¡Gracias! Te hemos añadido al boletín.';
+      document.getElementById('p5-newsform').reset();
+      setTimeout(() => msg.textContent = '', 6000);
+    }
+  </script>
+  <script src="js/card.js" defer></script>
+  <script src="js/scroll-menu.js" defer></script>
+  <script src="js/creditos.js" defer></script>
+  <script src="js/carrusel.js" defer></script>
+  <script src="js/login.js" defer></script>
+
+
+</body>
+
+</html>

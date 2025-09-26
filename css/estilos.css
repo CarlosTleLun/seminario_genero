@@ -1,0 +1,1879 @@
+/* --- Variables de color --- */
+:root {
+  --color-principal: #000d48;
+  --color-secundario: #f5f5f5;
+  /* Gris muy claro */
+  --color-texto: #333;
+  --color-acento: #00eaff;
+  /* Color acento */
+  --color-footer: #222;
+  --color-texto: #fff;
+  --transicion: 0.3s;
+  --p5-bg: linear-gradient(135deg, #0b3b70 0%, #08325f 60%, #021a3a 100%);
+  --p5-accent: #ffd100;
+  --p5-text: #e6f2ff;
+  --p5-muted: rgba(230, 242, 255, 0.8);
+  --p5-card: rgba(255, 255, 255, 0.04);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Importar Roboto desde Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* --- Tipografía moderna y minimalista --- */
+body {
+  font-family: 'Roboto', 'Inter', 'Poppins', sans-serif;
+  padding-top: 0px;
+}
+
+
+/* --- Reset básico --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Reiniciar márgenes del body para evitar espacio arriba */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra superior */
+.top-bar {
+  background: var(--p5-bg);
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  position: static;
+  /* ahora sí queda fija arriba */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor íconos */
+.top-bar .social-icons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+/* Área clicable de iconos */
+.top-bar .social-icons a {
+  color: white;
+  font-size: 1.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+/* Hover Facebook */
+.top-bar .social-icons a.facebook:hover {
+  color: #1877f2;
+  transform: scale(1.2);
+}
+
+/* Hover YouTube */
+.top-bar .social-icons a.youtube:hover {
+  color: #ff0000;
+  transform: scale(1.2);
+}
+
+
+
+
+/* --- Nav principal --- */
+.nav {
+  position: fixed;
+  top: 50px;
+  /* igual a la altura de la top-bar */
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  transition: all var(--transicion);
+  background: transparent;
+}
+
+.nav {
+  transition: all var(--transicion);
+  /* ya lo tienes */
+  top: 50px;
+  /* posición inicial */
+}
+
+.nav.scroll {
+  top: 0;
+  /* se sube suavemente al inicio de la pantalla */
+}
+
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Logo --- */
+.logo img {
+  height: 90px;
+  transition: transform var(--transicion);
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li a {
+  position: relative;
+  /* Necesario para pseudo-elementos */
+  color: var(--color-texto);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color var(--transicion);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  /* sombra que da efecto 3D */
+}
+
+/* Líneas iniciales */
+.nav-links li a::before,
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  /* un poco debajo del texto */
+  height: 2px;
+  /* grosor de la línea */
+  width: 0;
+  background: yellow;
+  /* color de la línea */
+  transition: width 0.3s ease, left 0.3s ease, right 0.3s ease;
+}
+
+/* Línea izquierda */
+.nav-links li a::before {
+  left: 50%;
+  /* empieza desde el centro hacia la izquierda */
+}
+
+/* Línea derecha */
+.nav-links li a::after {
+  right: 50%;
+  /* empieza desde el centro hacia la derecha */
+}
+
+/* Efecto hover: las líneas se expanden y se unen en el centro */
+.nav-links li a:hover::before,
+.nav-links li a:hover::after {
+  width: 50%;
+}
+
+/* Cambiar color de texto al hacer hover */
+.nav-links li a:hover {
+  color: var(--color-acento);
+}
+
+
+/* --- Hamburger animado --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 101;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--color-texto);
+  border-radius: 2px;
+  transition: all var(--transicion);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* --- Scroll animado --- */
+.nav.scroll {
+  background: var(--p5-bg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 2rem;
+}
+
+.header-bg {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Fondo opcional detrás de la imagen */
+  background-color: #fff;
+}
+
+.header-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../img/fondo-header.png') center/cover no-repeat;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+  z-index: 0;
+}
+
+/* En móvil (ajusta el max-width según tu diseño) */
+@media (max-width: 768px) {
+  .header-bg::before {
+    background: url('../img/fondo-header-movil.png') center/contain no-repeat;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+}
+
+/* Si tienes contenido dentro de header-bg */
+.header-bg>* {
+  position: relative;
+  z-index: 1;
+}
+
+
+.header-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  /* filtro oscuro */
+}
+
+.header-content {
+  position: relative;
+  color: var(--color-texto);
+  text-align: center;
+  max-width: 800px;
+  animation: fadeIn 1.5s ease forwards;
+}
+
+/* Efecto 3D para el h1 */
+.header-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  /* sombra más marcada para el título */
+}
+
+/* Efecto 3D para el párrafo */
+.header-content p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  /* sombra más sutil para el texto normal */
+}
+
+/* --- Animación fadeIn --- */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(20);
+  }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: var(--color-principal);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transicion);
+  }
+
+  .nav-links.show {
+    max-height: 400px;
+    padding: 1 rem;
+    padding-bottom: 10px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+
+
+/* --- Secciones generales --- */
+section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.sub-titulos,
+.scroll-text h3 {
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-principal);
+  margin-bottom: 1rem;
+}
+
+p.scroll-text {
+  text-align: center;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+/* Contenedor general del section */
+.docs.contenedor {
+  max-width: 1200px;
+  /* ancho máximo del bloque */
+  margin: 0 auto;
+  /* centrado */
+  text-align: center;
+  /* centra títulos */
+  padding: 2rem 1rem;
+}
+
+/* Estilos para los h3 */
+.docs.contenedor h3.scroll-text {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+/* Subtítulos */
+.docs.contenedor p.after,
+.docs.contenedor p#azul {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #666;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.card {
+  width: 280px;
+  height: 380px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(36, 36, 36, 0.146);
+  overflow: hidden;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-image {
+  flex: 1;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.card-image img:hover {
+  transform: scale(1.05);
+}
+
+
+.card-text {
+  height: 120px;
+  padding: 1rem 1rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.card-text h4 {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.card-text p {
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+}
+
+/* Inicial: cards invisibles y desplazadas */
+.card {
+  opacity: 0;
+  transform: translateX(0);
+  /* empezamos desde 0, no fuera del contenedor */
+  position: relative;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Cards pares desplazan desde derecha al aparecer */
+.cards-container .card:nth-child(even) {
+  transform: translateX(0);
+}
+
+/* Clase de scroll-in alterna la animación */
+.card.scroll-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.avisos-container {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.avisos-carrusel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(75, 75, 75, 0.103);
+}
+
+.avisos-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.avisos-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.avisos-slide img {
+  width: 100%;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Botones */
+.avisos-prev,
+.avisos-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.avisos-prev:hover,
+.avisos-next:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.avisos-prev {
+  left: 10px;
+}
+
+.avisos-next {
+  right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .avisos-prev,
+  .avisos-next {
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+
+
+.p5-footer {
+  background: var(--p5-bg);
+  color: var(--p5-text);
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.p5-footer-inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 1.6rem;
+  padding: 3rem 2rem 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Columnas */
+.p5-col h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.p5-brand .p5-logo {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.p5-desc {
+  margin: 0 0 0.8rem;
+  color: var(--p5-muted);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+/* Social */
+.p5-social {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.p5-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--p5-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+/* Links */
+.p5-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.p5-links a {
+  color: var(--p5-text);
+  text-decoration: none;
+  opacity: 0.95;
+  font-size: 0.95rem;
+}
+
+.p5-links a:hover,
+.p5-links a:focus {
+  color: var(--p5-accent);
+  outline: none;
+}
+
+/* Contact */
+.p5-contact address {
+  font-style: normal;
+  color: var(--p5-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Contenedor */
+.p5-contact-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Enlace */
+.p5-contact-item a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* espacio entre emoji y texto */
+  color: var(--p5-text);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* Emoji estilo */
+.emoji-mail {
+  font-size: 1.5rem;
+  /* tamaño del emoji */
+  transition: transform 0.3s ease;
+}
+
+/* Hover emoji */
+.p5-contact-item a:hover .emoji-mail {
+  transform: scale(1.2);
+}
+
+/* Opcional: hover en texto */
+.p5-contact-item a:hover b {
+  color: yellow;
+}
+
+
+/* Newsletter */
+.p5-news-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.p5-news-form input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--p5-text);
+  font-size: 0.95rem;
+}
+
+.p5-news-form button {
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--p5-accent);
+  color: #03203a;
+  font-weight: 600;
+  box-shadow: 0 6px 16px rgba(1, 9, 20, 0.2);
+}
+
+.p5-news-msg {
+  margin-top: 0.6rem;
+  color: var(--p5-accent);
+  font-weight: 600;
+}
+
+/* Onda SVG */
+.p5-wave svg {
+  display: block;
+  width: 100%;
+  height: 48px;
+}
+
+.p5-wave path {
+  fill: rgba(255, 255, 255, 0.06);
+}
+
+/* Pie inferior */
+.p5-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--p5-muted);
+  font-size: 0.9rem;
+}
+
+.p5-bottom-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.p5-bottom-links a {
+  color: var(--p5-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.p5-bottom-links a:hover {
+  color: var(--p5-accent);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .p5-footer-inner {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    padding: 2rem 1rem;
+    gap: 1rem;
+  }
+
+  .p5-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .p5-footer-inner {
+    grid-template-columns: 1fr;
+    padding: 1.2rem;
+    gap: 1rem;
+  }
+
+  .p5-brand .p5-logo {
+    width: 100px;
+  }
+
+  .p5-news-form {
+    flex-direction: column;
+  }
+
+  .p5-news-form button {
+    width: 100%;
+  }
+}
+
+/* Accesibilidad: oculto pero accesible */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+/* --- Enlaces de interés --- */
+.p5-interest {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.p5-interest li {
+  position: relative;
+  padding-left: 1.6rem;
+  /* espacio para el circulito */
+}
+
+.p5-interest li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  /* centra el círculo verticalmente */
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background-color: #FFD100;
+  /* Amarillo UNAM */
+}
+
+.p5-interest a {
+  color: var(--p5-text);
+  /* texto claro del footer */
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.p5-interest a:hover {
+  color: var(--p5-accent);
+  /* también amarillo */
+}
+
+
+/* --- Otros --- */
+hr.linea {
+  border: none;
+  height: 2px;
+  background: var(--color-principal);
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .icono {
+    display: block;
+  }
+
+  .enlaces {
+    display: none;
+    flex-direction: column;
+    background: var(--color-principal);
+    padding: 1rem;
+  }
+
+  .enlaces a {
+    margin: 0.5rem 0;
+  }
+
+  .enlaces.activo {
+    display: flex;
+  }
+
+  .textos h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* --- Imágenes generales --- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Imágenes de cards (se ven completas) --- */
+.publics img {
+  width: 100%;
+  max-height: 200px;
+  /* altura máxima */
+  object-fit: contain;
+  /* se ve completa */
+  background-color: #fff;
+  /* opcional, relleno */
+  padding: 5px;
+  /* margen visual */
+  border-radius: 8px;
+}
+
+/* --- Imágenes del carrusel (se ven completas) --- */
+.swiper-slide img {
+  width: 100%;
+  max-height: 250px;
+  /* altura máxima */
+  object-fit: contain;
+  /* se ve completa */
+  background-color: #fff;
+  /* opcional */
+  padding: 5px;
+  /* margen visual */
+  border-radius: 8px;
+}
+
+/* --- Imágenes en el footer --- */
+.footimg-container img {
+  max-width: 120px;
+  /* más chica */
+  height: auto;
+  object-fit: contain;
+  margin: auto;
+}
+
+.cartilla {
+  max-width: 200px;
+  /* No excede el ancho de su contenedor */
+  height: auto;
+  /* Mantiene la proporción de la imagen */
+  display: block;
+  /* Evita espacios extra debajo de la imagen */
+  margin: 0 auto;
+  /* Centra la imagen horizontalmente si es necesario */
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .cartilla {
+    width: 90%;
+    /* Ocupa 90% del contenedor en móviles */
+  }
+}
+
+
+/* --- Responsivo: más pequeñas en móvil --- */
+@media (max-width: 768px) {
+  .publics img {
+    max-height: 150px;
+    /* cards más compactas en móviles */
+  }
+
+  .swiper-slide img {
+    max-height: 180px;
+    /* carrusel más compacto en móviles */
+  }
+}
+
+.seminarios {
+  background: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Roboto', sans-serif;
+}
+
+.seminarios h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #052d92;
+}
+
+.seminario-list .mail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+.seminario-list .mail:hover {
+  background: #3856a4;
+  transform: translateX(5px);
+}
+
+.seminario-list .mail:hover a b {
+  color: #fff;
+}
+
+.seminario-list .mail a {
+  text-decoration: none;
+  color: #052d92;
+  font-weight: 500;
+}
+
+.seminario-list .mail .icon {
+  color: #052d92;
+  transition: color 0.3s;
+}
+
+.seminario-list .mail:hover .icon {
+  color: #fff;
+}
+
+/* --- Secciones con diferentes colores --- */
+/* Sección con diagonal hacia la derecha */
+#cierre {
+  /* Fondo degradado predominando azul marino */
+  background: linear-gradient(50deg,
+      #000829 0%,
+      #08325f 40%,
+      #0b3b70 75%,
+      #000000a4 100%);
+
+  /* Un toque de desenfoque detrás (efecto glass si hay transparencia) */
+  backdrop-filter: blur(8px);
+
+  /* Espaciado */
+  padding: 9rem 2rem;
+  text-align: center;
+
+  /* Clip-path diagonal moderna */
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+
+  /* Texto */
+  color: #fff;
+
+  /* Sombra suave en la sección completa */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto glow en encabezados y textos dentro de #cierre */
+#cierre h2,
+#cierre p {
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* Para botones o enlaces dentro */
+#cierre a {
+  display: inline-block;
+  background: #00e0ff;
+  color: #050065;
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#cierre a:hover {
+  background: #00c4e0;
+  transform: translateY(-3px);
+}
+
+#otra-section {
+  /* Fondo degradado: azul marino a la izquierda, azul brillante al final (derecha) */
+  background: linear-gradient(50deg,
+      #000829 0%,
+      #08325f 40%,
+      #0b3b70 75%,
+      #000000a4 100%);
+  /* Desenfoque suave si hay transparencia */
+  backdrop-filter: blur(8px);
+
+  /* Espaciado */
+  padding: 9rem 2rem;
+  text-align: center;
+
+  /* Diagonal hacia la izquierda */
+  clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 100%);
+
+  /* Texto */
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+
+  /* Sombra ligera para profundidad */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Glow en encabezados y párrafos */
+#otra-section h2,
+#otra-section p {
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+/* Botones o enlaces dentro de la sección */
+#otra-section a {
+  display: inline-block;
+  background: #00e0ff;
+  color: #050065;
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+#otra-section a:hover {
+  background: #00c4e0;
+  transform: translateY(-3px);
+}
+
+
+
+/* --- Estilos generales de la tarjeta --- */
+.memoria-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(36, 36, 36, 0.089);
+  overflow: hidden;
+  margin: 1rem 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 1rem;
+}
+
+.memoria-item:hover {
+  transform: translateY(-px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Sección izquierda: imagen --- */
+.izquierdo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+  padding: 1rem;
+}
+
+/* Estilos para el contenedor de la imagen */
+.izquierdo {
+  position: relative; /* Necesario para colocar el número sobre la imagen */
+}
+
+.izquierdo img {
+  max-width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.numero-ponencia {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  
+  /* Fondo con degradado suave y transparencia */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 123, 255, 0.3));
+  
+  /* Borde y sombra */
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  
+  /* Centrado del número */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555555;
+  
+  /* Efecto de suavizado */
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Pequeño efecto hover para llamar la atención */
+.numero-ponencia:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+
+
+/* --- Sección derecha: textos y botón --- */
+.derecho {
+  flex: 2;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* cabecera */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .5rem;
+}
+
+.derecho h3 {
+  font-size: 1.25rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.derecho {
+  flex: 2;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* <-- Esto centra todo horizontalmente */
+}
+
+.derecho .btn-youtube {
+  margin-top: 20px;
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff0000, #ff4d4d);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  /* más redondeado */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.derecho .btn-youtube i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Hover moderno */
+.derecho .btn-youtube:hover {
+  background: linear-gradient(135deg, #cc0000, #ff1a1a);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.derecho .btn-youtube:hover i {
+  transform: scale(1.2);
+  /* ícono crece un poco al hover */
+}
+
+
+/* --- Responsive para móviles --- */
+@media (max-width: 768px) {
+  .memoria-item {
+    flex-direction: column;
+  }
+
+  .izquierdo {
+    padding: 0.5rem;
+  }
+
+  .derecho {
+    padding: 1rem;
+  }
+
+  .derecho h3 {
+    font-size: 1.1rem;
+  }
+
+  .derecho .descripcion {
+    font-size: 0.9rem;
+  }
+
+  .derecho .btn-youtube {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 0;
+  }
+}
+
+
+/* Modal minimalista */
+.creditos-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+/* Wrapper que mantiene border-radius */
+.creditos-wrapper {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  /* Importante: evita que el scroll rompa los bordes */
+  max-height: 90vh;
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenido que hace scroll */
+.creditos-content {
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Estilos de títulos y textos */
+.creditos-content h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #052d92;
+}
+
+.credito-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.credito-item:last-child {
+  border-bottom: none;
+}
+
+.credito-item h3 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: #052d92;
+  font-size: 1.1rem;
+}
+
+.credito-item p {
+  margin: 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Botón de cerrar */
+.btn-cerrar {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #2c2c2c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cerrar:hover {
+  background-color: #00695b;
+  transform: scale(1.05);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .creditos-wrapper {
+    width: 90%;
+    max-height: 85vh;
+  }
+
+  .creditos-content {
+    padding: 1.5rem;
+  }
+
+  .creditos-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .credito-item h3 {
+    font-size: 1rem;
+  }
+
+  .btn-cerrar {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .creditos-wrapper {
+    width: 95%;
+    max-height: 80vh;
+  }
+
+  .creditos-content {
+    padding: 1rem;
+  }
+
+  .creditos-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .credito-item h3 {
+    font-size: 0.95rem;
+  }
+
+  .btn-cerrar {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Estilo para el contenedor de mantenimiento */
+#mantenimiento {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  /* Hace que ocupe todo el espacio disponible entre header y footer */
+  padding: 10rem;
+}
+
+/* Contenedor que tiene la imagen y el texto */
+.mantenimiento-contenedor {
+  position: relative;
+  width: 100%;
+  /* Asegura que el contenedor no sea demasiado grande */
+  max-width: 1200px;
+  /* Limita el tamaño máximo */
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 15px;
+  /* Bordes redondeados */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estilos para la imagen */
+.mantenimiento-contenedor img {
+  width: 100%;
+  /* Asegura que la imagen ocupe el 100% del contenedor */
+  max-width: 500px;
+  /* Controla el tamaño máximo de la imagen */
+  height: auto;
+  z-index: 2;
+  /* Asegura que la imagen esté encima del fondo */
+  position: relative;
+  border-radius: 8px;
+  /* Bordes redondeados para la imagen */
+}
+
+/* Estilo para el texto de "Sitio en Mantenimiento" */
+.texto-mantenimiento {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 3;
+  /* Asegura que el texto esté encima de la imagen */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  /* Sombra suave para mejorar la legibilidad */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo oscuro detrás del texto */
+  border-radius: 10px;
+  padding: 15px 30px;
+  font-family: 'Helvetica', sans-serif;
+  /* Fuente moderna */
+}
+
+/* --- Estilos modernos del login oculto --- */
+.login-oculto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  /* fondo semitransparente más elegante */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  /* difumina el fondo */
+  transition: opacity 0.3s ease;
+  padding: 2rem;
+}
+
+/* --- Fondo del login oculto --- */
+.login-oculto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 50, 0.6);
+  /* fondo azul oscuro semitransparente */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  /* difumina el fondo */
+  transition: opacity 0.3s ease;
+}
+
+/* --- Caja de login --- */
+.login-content {
+  background: rgba(105, 105, 105, 0.171);
+  backdrop-filter: blur(10px);
+  /* sutil transparencia */
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 80, 0.1);
+  /* sombra azul suave */
+  transform: scale(0.95);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.login-oculto.show .login-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* --- Imagen del login centrada --- */
+.login-content .login-img {
+  display: block;
+  /* hace que se comporte como bloque para centrar */
+  width: 120px;
+  /* ancho fijo */
+  height: auto;
+  /* mantiene proporción */
+  margin: 0 auto 1rem auto;
+  /* sombra suave */
+  transition: transform 0.3s ease;
+}
+
+.login-content .login-img:hover {
+  transform: scale(1.05);
+  /* efecto al pasar el mouse */
+}
+
+/* --- Título --- */
+.login-content h2 {
+  margin-bottom: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  /* texto blanco */
+}
+
+/* --- Labels --- */
+.login-content label {
+  color: #ffffff;
+  /* texto blanco */
+}
+
+/* --- Inputs modernos en tonos azules --- */
+.login-content input {
+  width: 100%;
+  margin: 0.8rem 0;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  /* fondo más oscuro para contraste */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(30, 60, 180, 0.2);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  text-align: center;
+  /* texto blanco */
+}
+
+.login-content input::placeholder {
+  color: #ffffff;
+  /* placeholder blanco */
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.login-content input:focus {
+  background: rgba(30, 60, 180, 0.25);
+  box-shadow: 0 6px 20px rgba(30, 60, 180, 0.4);
+  border: 1px solid #3b5ed5;
+  /* azul vivo */
+  color: #ffffff;
+  /* texto sigue blanco al enfocar */
+}
+
+.login-content input:focus::placeholder {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* --- Botón moderno --- */
+.login-content button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  width: 100%;
+  background: linear-gradient(135deg, #4f46e5, #3b5ed5);
+  /* gradiente azul */
+  color: #fff;
+  /* texto blanco */
+  border: none;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-content button:hover {
+  background: linear-gradient(135deg, #3b5ed5, #2a3dbb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 60, 180, 0.4);
+}
+
+/* --- Mensaje de error --- */
+#login-msg {
+  color: #e11d48;
+  /* rojo moderno */
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+  transition: opacity 0.3s ease;
+}
+
+/* --- Animación suave al mostrar el modal --- */
+.login-oculto.show {
+  display: flex;
+  opacity: 1;
+}
+
+#datos-docs {
+  position: relative;
+  padding: 1rem;
+  margin: 2rem auto;
+  /* centra horizontalmente */
+  border: 1px solid #87878709;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  /* ajusta el ancho máximo */
+  width: 90%;
+  /* margen a los lados en pantallas pequeñas */
+}
+
+
+#datos-docs h3 {
+  position: relative;
+  display: inline-block;
+  /* mantiene el ancho del texto */
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: #fff;
+  /* color de fondo para tapar la línea */
+  padding: 0 1rem;
+  /* espacio a los lados del texto */
+  z-index: 1;
+}
+
+/* contenedor del título con línea */
+#datos-docs .titulo-container {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* línea completa detrás */
+#datos-docs .titulo-container::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #ccc;
+  z-index: 0;
+}
+
+.classroom-banner {
+  position: relative;
+  width: 95%;
+  /* todo el ancho disponible */
+  max-width: 700px;
+  /* ancho máximo */
+  height: 200px;
+  /* altura baja tipo banner */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: #f0f0f0;
+  margin: 1rem auto;
+}
+
+.classroom-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* llena el espacio recortando */
+  display: block;
+}
+
+
+.form-asistencia {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9f9fb;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+.form-asistencia h2 {
+  text-align: center;
+  color: #002147;
+  margin-bottom: 1rem;
+}
+
+.form-asistencia .intro,
+.form-asistencia .note,
+.form-asistencia .warning {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form-asistencia .warning {
+  background: #e9f9fcf0;
+  border-left: 4px solid #00cad1;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.form-asistencia form {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Solo una columna */
+  gap: 1rem;
+  /* Espacio vertical entre inputs */
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+  outline: none;
+}
+
+.radios,
+.aviso {
+  grid-column: 1/-1;
+  background: #eef3ff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.radios p,
+.aviso p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.radios label,
+.aviso label {
+  display: block;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.btn-enviar {
+  grid-column: 1/-1;
+  padding: 0.8rem;
+  background: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+  background: #003d80;
+}
+
+@media (max-width: 800px) {
+  .form-asistencia {
+    max-width: 95%;
+  }
+
+  .form-asistencia {
+    padding: 1rem;
+  }
+
+  .form-asistencia form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aviso-cerrado {
+  display: flex;
+  /* Centrado vertical y horizontal */
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  /* Ocupa más espacio de la pantalla */
+  padding: 2rem;
+  background: linear-gradient(135deg, #f3f4f6, #e0e7ff);
+}
+
+.aviso-contenido {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.aviso-contenido h2 {
+  font-size: 2rem;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+}
+
+.aviso-contenido p {
+  font-size: 1.2rem;
+  color: #374151;
+  line-height: 1.6;
+}

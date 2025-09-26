@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin-dash</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/webIconP5.jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/6af37e65ca.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --color-primary: #00174a;
+            --color-primary-gradient: linear-gradient(135deg, #0c132f, #4698e5);
+            --color-secondary: #f3f4f6;
+            --color-bg: #f9fafb;
+            --color-text: #111827;
+            --color-text-light: #6b7280;
+            --color-card-bg: #ffffff;
+            --color-accent: #3163a4;
+            --transition: 0.3s ease-in-out;
+            --radius: 14px;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: var(--color-primary-gradient);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1rem;
+            gap: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar .logo {
+            width: 100%;
+            max-width: 150px;
+            margin: 0 auto 2rem auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            text-align: left;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-nav:hover,
+        .btn-nav.active {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 220px;
+            padding: 3rem;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        /* Contenedor del switch + texto */
+        .switch-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            /* Espacio entre toggle y texto */
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        /* El toggle real */
+        .switch-wrapper input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Slider */
+        .switch-wrapper .slider {
+            position: relative;
+            width: 60px;
+            height: 28px;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: 0.3s;
+        }
+
+        .switch-wrapper .slider:before {
+            content: "";
+            position: absolute;
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        /* Cuando está activo */
+        .switch-wrapper input:checked+.slider {
+            background-color: var(--color-accent);
+        }
+
+        .switch-wrapper input:checked+.slider:before {
+            transform: translateX(32px);
+        }
+
+        /* Texto al lado del toggle */
+        .switch-wrapper .switch-text {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            user-select: none;
+        }
+
+
+        /* Tarjetas */
+        .datos-content {
+            padding: 1rem;
+            background: var(--color-secondary);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .datos-content h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--color-text);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--color-card-bg);
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .card .dato {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        /* Botón descargar */
+        .download-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            background-color: var(--color-accent);
+            color: #fff;
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn:hover {
+            background-color: #4f46e5;
+            transform: scale(1.05);
+        }
+
+        /* Tabla */
+        .table-container {
+            overflow-x: auto;
+            background-color: var(--color-card-bg);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        table th {
+            color: var(--color-text-light);
+            font-weight: 600;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        table tr:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            transition: background 0.2s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                width: 100%;
+                padding: 1rem;
+                overflow-x: auto;
+            }
+
+            .sidebar .btn-nav {
+                flex: 1;
+                text-align: center;
+                padding: 0.5rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <img class="logo" src="../img/prepa5.png" alt="">
+            <button class="btn-nav active">Asistencia Seminario</button>
+            <button class="btn-nav">Asistencia Conversatorio</button>
+            <button class="btn-nav" onclick="window.location.href='../index.html'">Salir</button>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Asistencias</h1>
+            </header>
+
+            <!-- Seminario -->
+            <div id="tablaSeminario">
+                <div class="datos-content">
+                    <h2>Resumen Seminario</h2>
+                    <!-- Cambia tus inputs por estos -->
+                    <label class="switch-wrapper">
+                        <input type="checkbox" id="toggleSwitchSeminario">
+                        <span class="slider"></span>
+                        <span class="switch-text"><strong>Formulario abierto</strong></span>
+                    </label>
+
+
+
+
+
+
+                    <div class="cards-container">
+                        <div class="card">
+                            <h3>Asistencia Total</h3>
+                            <p class="dato">?</p>
+                        </div>
+                        <div class="card">
+                            <h3>Planteles</h3>
+                            <p class="dato">?</p>
+                        </div>
+                        <div class="card">
+                            <h3>Colegio</h3>
+                            <p class="dato">?</p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <button class="download-btn">Descargar</button>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Marca temporal</th>
+                                <th>Correo</th>
+                                <th>Núm. trabajador</th>
+                                <th>RFC</th>
+                                <th>Plantel</th>
+                                <th>Colegio</th>
+                                <th>A. Paterno</th>
+                                <th>A. Materno</th>
+                                <th>Nombre(s)</th>
+                                <th>Verificación</th>
+                                <th>Aviso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11" style="text-align:center;">Datos de ejemplo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Conversatorio -->
+            <div id="tablaConversatorio" style="display:none;">
+                <div class="datos-content">
+                    <h2>Resumen Conversatorio</h2>
+                    <label class="switch-wrapper">
+                        <input type="checkbox" id="toggleSwitchConversatorio">
+                        <span class="slider"></span>
+                        <span class="switch-text"><strong>Formulario abierto</strong></span>
+                    </label>
+
+                    <div class="cards-container">
+                        <div class="card">
+                            <h3>Asistencia Total</h3>
+                            <p class="dato">?</p>
+                        </div>
+                        <div class="card">
+                            <h3>Planteles</h3>
+                            <p class="dato">?</p>
+                        </div>
+                        <div class="card">
+                            <h3>Colegio</h3>
+                            <p class="dato">?</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button class="download-btn">Descargar</button>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Marca temporal</th>
+                                <th>Correo</th>
+                                <th>Núm. trabajador</th>
+                                <th>RFC</th>
+                                <th>Plantel</th>
+                                <th>Colegio</th>
+                                <th>A. Paterno</th>
+                                <th>A. Materno</th>
+                                <th>Nombre(s)</th>
+                                <th>Verificación</th>
+                                <th>Aviso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="11" style="text-align:center;">Datos de ejemplo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+
+        // Sidebar botones
+        const btns = document.querySelectorAll('.sidebar .btn-nav');
+        const tablaSeminario = document.getElementById('tablaSeminario');
+        const tablaConversatorio = document.getElementById('tablaConversatorio');
+
+        btns.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (index === 0) {
+                    tablaSeminario.style.display = 'block';
+                    tablaConversatorio.style.display = 'none';
+                } else if (index === 1) {
+                    tablaSeminario.style.display = 'none';
+                    tablaConversatorio.style.display = 'block';
+                }
+            });
+        });
+    </script>
+    <script>
+        // Obtener referencias a los switches
+        const switchSeminario = document.getElementById('toggleSwitchSeminario');
+        const switchConversatorio = document.getElementById('toggleSwitchConversatorio');
+
+        // Inicializar switches con estado guardado
+        switchSeminario.checked = localStorage.getItem('seminarioDesactivado') === 'true';
+        switchConversatorio.checked = localStorage.getItem('conversatorioDesactivado') === 'true';
+
+        // Cambiar texto inicial según estado
+        switchSeminario.nextElementSibling.nextElementSibling.textContent =
+            switchSeminario.checked ? 'Formulario cerrado' : 'Formulario abierto';
+
+        switchConversatorio.nextElementSibling.nextElementSibling.textContent =
+            switchConversatorio.checked ? 'Formulario cerrado' : 'Formulario abierto';
+
+        // Escuchar cambios
+        switchSeminario.addEventListener('change', () => {
+            localStorage.setItem('seminarioDesactivado', switchSeminario.checked);
+            switchSeminario.nextElementSibling.nextElementSibling.textContent =
+                switchSeminario.checked ? 'Formulario cerrado' : 'Formulario abierto';
+        });
+
+        switchConversatorio.addEventListener('change', () => {
+            localStorage.setItem('conversatorioDesactivado', switchConversatorio.checked);
+            switchConversatorio.nextElementSibling.nextElementSibling.textContent =
+                switchConversatorio.checked ? 'Formulario cerrado' : 'Formulario abierto';
+        });
+    </script>
+</body>
+
+</html>
